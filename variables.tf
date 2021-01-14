@@ -15,8 +15,9 @@ variable "vpc_id" {
 variable "name" {
   description = "Name of security group"
   type        = string
-  default = "usbank_east-1_"
+  default  = "usbank-sg"
 }
+
 
 variable "env_tags" {
   description = "Name of security group"
