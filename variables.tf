@@ -17,6 +17,12 @@ variable "name" {
   type        = string
 }
 
+variable "env_tags" {
+  description = "Name of security group"
+  type        = string
+  default = "staging"
+}
+
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
   type        = bool
@@ -26,7 +32,7 @@ variable "use_name_prefix" {
 variable "description" {
   description = "Description of security group"
   type        = string
-  default     = "Security Group managed by Terraform"
+  default     = "Custom Security Group managed by Terraform"
 }
 
 variable "revoke_rules_on_delete" {
