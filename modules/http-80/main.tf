@@ -9,18 +9,21 @@ module "sg" {
   revoke_rules_on_delete = var.revoke_rules_on_delete
   tags                   = var.tags
 
+
+
+
   ##########
   # Ingress
   ##########
   # Rules by names - open for default CIDR
-  ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.ingress_rules, [""]))))
-
+  #ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.ingress_rules, [""]))))
+  ingress_rules =  var.ingress_rules
   # Open for self
   ingress_with_self = concat(var.auto_ingress_with_self, var.ingress_with_self)
 
   # Open to IPv4 cidr blocks
+    #ingress_with_cidr_blocks = lookup(var.ingress_with_cidr_blocks, "ingress_with_cidr_blocks")
   ingress_with_cidr_blocks = var.ingress_with_cidr_blocks
-
   # Open to IPv6 cidr blocks
   ingress_with_ipv6_cidr_blocks = var.ingress_with_ipv6_cidr_blocks
 

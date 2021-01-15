@@ -1,16 +1,22 @@
 #################
 # Security group
 #################
+
+########Use to test VPC ID, use the VPC module for production
+
+variable "vpc_id" {
+  description = "List of computed egress rules to create by name"
+  type        = string
+  default     = "vpc-018de92b069abac0b"
+}
+
+
 variable "create" {
   description = "Whether to create security group and all rules"
   type        = bool
   default     = true
 }
 
-variable "vpc_id" {
-  description = "ID of the VPC where to create security group"
-  type        = string
-}
 
 variable "name" {
   description = "Name of security group"
@@ -21,13 +27,13 @@ variable "name" {
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "description" {
   description = "Description of security group"
   type        = string
-  default     = "Security Group managed by Terraform"
+  default     = "Security Group for ELB"
 }
 
 variable "revoke_rules_on_delete" {
@@ -45,11 +51,12 @@ variable "tags" {
 ##########
 # Ingress
 ##########
-variable "ingress_rules" {
+variable "ingress_with_cidr_blocks" {
   description = "List of ingress rules to create by name"
-  type        = list(string)
+  type        = list(map(string))
   default     = []
 }
+
 
 variable "ingress_with_self" {
   description = "List of ingress rules to create where 'self' is defined"
@@ -57,11 +64,16 @@ variable "ingress_with_self" {
   default     = []
 }
 
-variable "ingress_with_cidr_blocks" {
-  description = "List of ingress rules to create where 'cidr_blocks' is used"
-  type        = list(map(string))
-  default     = []
+variable "ingress_rules" {
+    type = list(object({
+      from_port   = number
+      to_port     = number
+      protocol    = string
+      cidr_blocks  = string
+      description = string
+    }))
 }
+
 
 variable "ingress_with_ipv6_cidr_blocks" {
   description = "List of ingress rules to create where 'ipv6_cidr_blocks' is used"
