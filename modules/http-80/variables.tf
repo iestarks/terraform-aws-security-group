@@ -15,6 +15,7 @@ variable "vpc_id" {
 variable "name" {
   description = "Name of security group"
   type        = string
+  default = "http-80-sg"
 }
 
 variable "use_name_prefix" {
