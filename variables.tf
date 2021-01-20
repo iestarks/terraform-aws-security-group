@@ -52,11 +52,42 @@ variable "tags" {
 ##########
 # Ingress
 ##########
-variable "ingress_rules" {
-  description = "List of ingress rules to create by name"
-  type        = list(string)
-  default     = []
+variable "mysql_ingress_rules" {
+  description = "mysql ingress rules"
+  type        = list(map(string))
+
+  default = [
+    {
+      rule_number = 30
+      rule_action = "allow"
+      from_port   = 3306
+      to_port     = 3306
+      protocol    = "tcp"
+      cidr_blocks  = "10.60.1.0/24"
+      description = "MySQL ingress rules"
+    },
+  ]
 }
+
+
+variable "elb_ingress_rules" {
+  description = "ELB ingress rules"
+  type        = list(map(string))
+
+  default = [
+    {
+      rule_number = 80
+      rule_action = "allow"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      cidr_blocks  = "10.60.0.0/16"
+     description = "ELB ingress rules"
+    },
+  ]
+}
+
+
 
 variable "ingress_with_self" {
   description = "List of ingress rules to create where 'self' is defined"

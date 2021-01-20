@@ -1,4 +1,4 @@
-elb_ingress_rules = [
+ingress_rules = [
         {
           from_port   = 22
           to_port     = 22

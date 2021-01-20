@@ -1,4 +1,4 @@
-module "sg" {
+module "http-sg" {
   source = "../../"
 
   create                 = var.create
@@ -17,7 +17,7 @@ module "sg" {
   ##########
   # Rules by names - open for default CIDR
   #ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.ingress_rules, [""]))))
-  ingress_rules =  var.ingress_rules
+  #ingress_rules =  var.elb_ingress_rules
   # Open for self
   ingress_with_self = concat(var.auto_ingress_with_self, var.ingress_with_self)
 

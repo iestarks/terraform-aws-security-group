@@ -7,6 +7,14 @@ variable "create" {
   default     = true
 }
 
+
+
+variable "vpcname" {
+  description = "Name to be used on all the resources as identifier"
+  type        = string
+  default     = "bankus_east-1-vpc"
+}
+
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
@@ -20,13 +28,13 @@ variable "name" {
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "description" {
   description = "Description of security group"
   type        = string
-  default     = "Security Group managed by Terraform"
+  default     = "MySQL Security Group managed by Terraform"
 }
 
 variable "revoke_rules_on_delete" {
@@ -44,10 +52,20 @@ variable "tags" {
 ##########
 # Ingress
 ##########
-variable "ingress_rules" {
-  description = "List of ingress rules to create by name"
-  type        = list(string)
-  default     = []
+variable "mysql_ingress_rules" {
+  description = "mysql ingress rules"
+  type        = list(map(string))
+
+  default = [
+    {
+      rule_number = 30
+      rule_action = "allow"
+      from_port   = 3306
+      to_port     = 3306
+      protocol    = "tcp"
+      cidr_block  = "10.60.0.0/16"
+    },
+  ]
 }
 
 variable "ingress_with_self" {

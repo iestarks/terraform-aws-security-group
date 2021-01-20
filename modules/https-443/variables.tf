@@ -7,6 +7,12 @@ variable "create" {
   default     = true
 }
 
+variable "vpcname" {
+  description = "Name to be used on all the resources as identifier"
+  type        = string
+  default     = "bankus_east-1-vpc"
+}
+
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
@@ -44,11 +50,32 @@ variable "tags" {
 ##########
 # Ingress
 ##########
-variable "ingress_rules" {
-  description = "List of ingress rules to create by name"
-  type        = list(string)
-  default     = []
+# variable "ingress_rules" {
+#   description = "List of ingress rules to create by name"
+#   type        = list(string)
+#   default     = []
+# }
+
+variable "appserv_ingress_rules" {
+  description = "ELB ingress rules"
+  type        = list(map(string))
+
+  default = [
+    {
+      rule_number = 20
+      rule_action = "allow"
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      cidr_block  = "10.60.0.0/16"
+    },
+  ]
 }
+
+
+
+
+
 
 variable "ingress_with_self" {
   description = "List of ingress rules to create where 'self' is defined"

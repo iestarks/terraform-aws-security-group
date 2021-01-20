@@ -1,3 +1,15 @@
+
+##############################################################
+# Data sources to get VPC Details
+##############################################################
+# data "aws_vpc" "usbank_vpc" {
+#   filter {
+#     name = "tag:Name"
+#     values = [var.vpcname]
+#   }
+# }
+
+
 module "sg" {
   source = "../../"
 
@@ -5,7 +17,9 @@ module "sg" {
   name                   = var.name
   use_name_prefix        = var.use_name_prefix
   description            = var.description
-  vpc_id                 = var.vpc_id
+  #vpc_id                 = data.aws_vpc.usbank_vpc.id
+   vpc_id                 = var.vpc_id
+
   revoke_rules_on_delete = var.revoke_rules_on_delete
   tags                   = var.tags
 
@@ -13,7 +27,9 @@ module "sg" {
   # Ingress
   ##########
   # Rules by names - open for default CIDR
-  ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.ingress_rules, [""]))))
+  #ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.appserv_ingress_rules, [""]))))
+
+  #ingress_rules = var.appserv_ingress_rules
 
   # Open for self
   ingress_with_self = concat(var.auto_ingress_with_self, var.ingress_with_self)

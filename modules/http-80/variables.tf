@@ -7,7 +7,6 @@
 variable "vpc_id" {
   description = "List of computed egress rules to create by name"
   type        = string
-  default     = "vpc-018de92b069abac0b"
 }
 
 
@@ -19,10 +18,17 @@ variable "create" {
 
 
 variable "name" {
-  description = "Name of security group"
+  description = "Name of ELB http security group"
   type        = string
   default = "http-80-sg"
 }
+
+variable "vpcname" {
+  description = "Name to be used on all the resources as identifier"
+  type        = string
+  default     = "bankus_east-1-vpc"
+}
+
 
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
@@ -64,15 +70,39 @@ variable "ingress_with_self" {
   default     = []
 }
 
-variable "ingress_rules" {
-    type = list(object({
-      from_port   = number
-      to_port     = number
-      protocol    = string
-      cidr_blocks  = string
-      description = string
-    }))
+variable "elb_ingress_rules" {
+  description = "ELB ingress rules"
+  type        = list(map(string))
+
+  default = [
+    {
+      rule_number = 80
+      rule_action = "allow"
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      cidr_block  = "10.60.0.0/16"
+    },
+  ]
 }
+
+variable "mysql_ingress_rules" {
+  description = "mysql ingress rules"
+  type        = list(map(string))
+
+  default = [
+    {
+      rule_number = 30
+      rule_action = "allow"
+      from_port   = 3306
+      to_port     = 3306
+      protocol    = "tcp"
+      cidr_block  = "10.60.0.0/16"
+    },
+  ]
+}
+
+
 
 
 variable "ingress_with_ipv6_cidr_blocks" {
