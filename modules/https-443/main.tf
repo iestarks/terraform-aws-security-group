@@ -1,14 +1,4 @@
 
-##############################################################
-# Data sources to get VPC Details
-##############################################################
-# data "aws_vpc" "usbank_vpc" {
-#   filter {
-#     name = "tag:Name"
-#     values = [var.vpcname]
-#   }
-# }
-
 
 module "sg" {
   source = "../../"
@@ -17,7 +7,6 @@ module "sg" {
   name                   = var.name
   use_name_prefix        = var.use_name_prefix
   description            = var.description
-  #vpc_id                 = data.aws_vpc.usbank_vpc.id
    vpc_id                 = var.vpc_id
 
   revoke_rules_on_delete = var.revoke_rules_on_delete

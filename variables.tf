@@ -52,6 +52,12 @@ variable "tags" {
 ##########
 # Ingress
 ##########
+
+variable "ingress_rules" {
+  description = "List of ingress rules to create by name"
+  type        = list(string)
+  default     = []
+}
 variable "mysql_ingress_rules" {
   description = "mysql ingress rules"
   type        = list(map(string))
@@ -87,7 +93,28 @@ variable "elb_ingress_rules" {
   ]
 }
 
+variable "app_ingress_rules" {
+  description = "ELB ingress rules"
+  type        = list(map(string))
 
+  default = [
+    {
+      rule_number = 100
+      rule_action = "allow"
+      from_port   = -1
+      to_port     = 1
+      protocol    = "icmp"
+      cidr_blocks  = "10.60.0.0/16"
+     description = "App Ping ingress rules"
+    },
+  ]
+}
+
+# variable "ingress_rules" {
+#   description = "List of ingress rules to create by name"
+#   type        = list(map(string))
+#   default     = []
+# }
 
 variable "ingress_with_self" {
   description = "List of ingress rules to create where 'self' is defined"

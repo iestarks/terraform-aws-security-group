@@ -50,11 +50,6 @@ variable "tags" {
 ##########
 # Ingress
 ##########
-# variable "ingress_rules" {
-#   description = "List of ingress rules to create by name"
-#   type        = list(string)
-#   default     = []
-# }
 
 variable "appserv_ingress_rules" {
   description = "ELB ingress rules"
@@ -67,6 +62,14 @@ variable "appserv_ingress_rules" {
       from_port   = 443
       to_port     = 443
       protocol    = "tcp"
+      cidr_block  = "10.60.0.0/16"
+    },
+    {
+      rule_number = 40
+      rule_action = "allow"
+      from_port   = -1
+      to_port     = 1
+      protocol    = "icmp"
       cidr_block  = "10.60.0.0/16"
     },
   ]

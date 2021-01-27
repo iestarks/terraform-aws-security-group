@@ -15,14 +15,24 @@ variable "vpcname" {
   default     = "bankus_east-1-vpc"
 }
 
+
+
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
+  default = "vpc-0e9d53aee8daeb31e"
 }
 
 variable "name" {
   description = "Name of security group"
   type        = string
+  default = "usbank_mysql"
+}
+
+variable "ingress_rules" {
+  description = "List of ingress rules to create by name"
+  type        = list(string)
+  default     = []
 }
 
 variable "use_name_prefix" {
