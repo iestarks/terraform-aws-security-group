@@ -15,7 +15,6 @@ locals {
 ##########################
 resource "aws_security_group" "this" {
   count = var.create && false == var.use_name_prefix ? 1 : 0
-
   name                   = var.name
   description            = var.description
   vpc_id                 = var.vpc_id

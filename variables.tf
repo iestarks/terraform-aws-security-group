@@ -125,7 +125,11 @@ variable "ingress_with_self" {
 variable "ingress_with_cidr_blocks" {
   description = "List of ingress rules to create where 'cidr_blocks' is used"
   type        = list(map(string))
-  default     = []
+default =[
+    {
+     cidr_blocks = "10.60.0.0/16"
+   },
+  ]
 }
 
 variable "ingress_with_ipv6_cidr_blocks" {
@@ -143,8 +147,9 @@ variable "ingress_with_source_security_group_id" {
 variable "ingress_cidr_blocks" {
   description = "List of IPv4 CIDR ranges to use on all ingress rules"
   type        = list(string)
-  default     = []
+  default  = ["10.60.0.0/16"]
 }
+
 
 variable "ingress_ipv6_cidr_blocks" {
   description = "List of IPv6 CIDR ranges to use on all ingress rules"

@@ -35,6 +35,15 @@ variable "ingress_rules" {
   default     = []
 }
 
+variable "cidr_blocks" {
+  description = "List of ingress rules to create by name"
+  type        = list(map(string))
+  default = [
+    {
+      cidr_blocks = "10.60.0.0/16"
+    },
+  ]
+}
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
   type        = bool

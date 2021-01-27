@@ -25,9 +25,10 @@ module "sg" {
   # Ingress
   ##########
   # Rules by names - open for default CIDR
-  #ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.mysql_ingress_rules [""]))))
 
-  ingress_rules = var.mysql_ingress_rules
+  ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rules, var.ingress_rules, [""]))))
+
+  #ingress_rules = var.mysql_ingress_rules
 
   # Open for self
   ingress_with_self = concat(var.auto_ingress_with_self, var.ingress_with_self)
@@ -42,7 +43,7 @@ module "sg" {
   ingress_with_source_security_group_id = var.ingress_with_source_security_group_id
 
   # Default ingress CIDR blocks
-  ingress_cidr_blocks      = var.ingress_cidr_blocks
+  #ingress_cidr_blocks      = var.ingress_cidr_blocks
   ingress_ipv6_cidr_blocks = var.ingress_ipv6_cidr_blocks
 
   # Default prefix list ids
