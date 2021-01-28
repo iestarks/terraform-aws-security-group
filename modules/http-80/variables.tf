@@ -5,7 +5,7 @@
 ########Use to test VPC ID, use the VPC module for production
 
 variable "vpc_id" {
-  description = "List of computed egress rules to create by name"
+  description = "Enter VPC-ID to attach SG to"
   type        = string
 }
 

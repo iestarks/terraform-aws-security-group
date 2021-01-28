@@ -22,7 +22,6 @@ module "http-sg" {
   ingress_with_self = concat(var.auto_ingress_with_self, var.ingress_with_self)
 
   # Open to IPv4 cidr blocks
-    #ingress_with_cidr_blocks = lookup(var.ingress_with_cidr_blocks, "ingress_with_cidr_blocks")
   ingress_with_cidr_blocks = var.ingress_with_cidr_blocks
   # Open to IPv6 cidr blocks
   ingress_with_ipv6_cidr_blocks = var.ingress_with_ipv6_cidr_blocks
