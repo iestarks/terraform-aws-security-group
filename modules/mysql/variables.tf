@@ -20,8 +20,6 @@ variable "vpcname" {
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
-  #default = "vpc-0e9d53aee8daeb31e"
-  default  = ""
 }
 
 variable "name" {
@@ -30,24 +28,16 @@ variable "name" {
   default = "usbank_mysql"
 }
 
-variable "ingress_rules" {
-  description = "List of ingress rules to create by name"
-  type        = list(string)
-  #type        = list(map(string))
-  #type         = string
-  default     = []
-}
 
-
-variable "cidr_blocks" {
-  description = "List of ingress rules to create by name"
-  type        = list(map(string))
-  default = [
-    {
-      cidr_blocks = "10.60.0.0/16"
-    },
-  ]
-}
+# variable "cidr_blocks" {
+#   description = "List of ingress rules to create by name"
+#   type        = list(map(string))
+#   default = [
+#     {
+#       cidr_blocks = "10.60.0.0/16"
+#     },
+#   ]
+# }
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
   type        = bool
@@ -75,6 +65,16 @@ variable "tags" {
 ##########
 # Ingress
 #############
+
+
+variable "ingress_rules" {
+  description = "List of ingress rules to create by name"
+  type        = list(string)
+  #type        = list(map(string))
+  #type         = string
+  default     = []
+}
+
 
 #####Only use if you are NOT using auto-assign Default SG
 
