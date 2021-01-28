@@ -29,15 +29,6 @@ variable "name" {
 }
 
 
-# variable "cidr_blocks" {
-#   description = "List of ingress rules to create by name"
-#   type        = list(map(string))
-#   default = [
-#     {
-#       cidr_blocks = "10.60.0.0/16"
-#     },
-#   ]
-# }
 variable "use_name_prefix" {
   description = "Whether to use name_prefix or fixed name. Should be true to able to update security group name after initial creation"
   type        = bool
@@ -53,7 +44,7 @@ variable "description" {
 variable "revoke_rules_on_delete" {
   description = "Instruct Terraform to revoke all of the Security Groups attached ingress and egress rules before deleting the rule itself. Enable for EMR."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "tags" {
@@ -106,13 +97,17 @@ variable "ingress_with_self" {
 variable "ingress_with_cidr_blocks" {
   description = "List of ingress rules to create where 'cidr_blocks' is used"
   type        = list(map(string))
-  default     = []
+default =[]
 }
 
 variable "ingress_with_ipv6_cidr_blocks" {
   description = "List of ingress rules to create where 'ipv6_cidr_blocks' is used"
   type        = list(map(string))
-  default     = []
+ default =[
+    {
+     cidr_blocks = "10.60.0.0/16"
+   },
+ ]
 }
 
 variable "ingress_with_source_security_group_id" {
