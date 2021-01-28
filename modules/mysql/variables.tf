@@ -20,7 +20,8 @@ variable "vpcname" {
 variable "vpc_id" {
   description = "ID of the VPC where to create security group"
   type        = string
-  default = ""
+  #default = "vpc-0e9d53aee8daeb31e"
+  default  = ""
 }
 
 variable "name" {
