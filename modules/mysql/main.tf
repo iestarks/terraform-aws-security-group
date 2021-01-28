@@ -28,7 +28,7 @@ module "sg" {
 
   #ingress_rules = sort(compact(distinct(concat(var.auto_ingress_rule [""]))))
 
-  ingress_rules = var.mysql_ingress_rules
+  ingress_rules = var.ingress_rules
 
   # Open for self
   ingress_with_self = concat(var.auto_ingress_with_self, var.ingress_with_self)

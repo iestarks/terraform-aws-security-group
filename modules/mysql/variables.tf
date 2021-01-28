@@ -32,8 +32,11 @@ variable "name" {
 variable "ingress_rules" {
   description = "List of ingress rules to create by name"
   type        = list(string)
+  #type        = list(map(string))
+  #type         = string
   default     = []
 }
+
 
 variable "cidr_blocks" {
   description = "List of ingress rules to create by name"
@@ -70,22 +73,28 @@ variable "tags" {
 
 ##########
 # Ingress
-##########
-variable "mysql_ingress_rules" {
-  description = "mysql ingress rules"
-  type        = list(map(string))
+#############
 
-  default = [
-    {
-      rule_number = 30
-      rule_action = "allow"
-      from_port   = 3306
-      to_port     = 3306
-      protocol    = "tcp"
-      cidr_block  = "10.60.0.0/16"
-    },
-  ]
-}
+#####Only use if you are NOT using auto-assign Default SG
+
+# variable "mysql_ingress_rules" {
+#   description = "mysql ingress rules"
+#   type        = list(map(string))
+
+#   default = [
+#     {
+#       rule_number = 30
+#       rule_action = "allow"
+#       from_port   = 3306
+#       to_port     = 3306
+#       protocol    = "tcp"
+#       cidr_block  = "10.60.0.0/16"
+#     },
+#   ]
+# }
+
+
+############################################
 
 variable "ingress_with_self" {
   description = "List of ingress rules to create where 'self' is defined"
