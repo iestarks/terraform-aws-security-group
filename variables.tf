@@ -125,11 +125,7 @@ variable "ingress_with_self" {
 variable "ingress_with_cidr_blocks" {
   description = "List of ingress rules to create where 'cidr_blocks' is used"
   type        = list(map(string))
-default =[
-    {
-     cidr_blocks = "10.60.0.0/16"
-   },
-  ]
+  default     = []
 }
 
 variable "ingress_with_ipv6_cidr_blocks" {

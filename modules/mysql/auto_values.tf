@@ -12,7 +12,7 @@ variable "auto_ingress_rules" {
 variable "auto_ingress_with_self" {
   description = "List of maps defining ingress rules with self to add automatically"
   type        = list(map(string))
-  default     = [{ "rule" = "all-all" }]
+  default     = [{ "rule" = "1" }]
 }
 
 variable "auto_egress_rules" {

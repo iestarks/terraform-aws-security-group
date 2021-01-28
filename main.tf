@@ -103,7 +103,7 @@ resource "aws_security_group_rule" "ingress_with_source_security_group_id" {
   description = lookup(
     var.ingress_with_source_security_group_id[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for Wide Open with_source_security_group_id",
   )
 
   from_port = lookup(
@@ -147,7 +147,7 @@ resource "aws_security_group_rule" "computed_ingress_with_source_security_group_
   description = lookup(
     var.computed_ingress_with_source_security_group_id[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for Wide Open with source_security_group_id",
   )
 
   from_port = lookup(
@@ -198,7 +198,7 @@ resource "aws_security_group_rule" "ingress_with_cidr_blocks" {
   description = lookup(
     var.ingress_with_cidr_blocks[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for Wide Open CIDR Blocks",
   )
 
   from_port = lookup(
@@ -237,7 +237,7 @@ resource "aws_security_group_rule" "computed_ingress_with_cidr_blocks" {
   description = lookup(
     var.computed_ingress_with_cidr_blocks[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for Wide Open Computed CIDR Blocks",
   )
 
   from_port = lookup(
@@ -288,7 +288,7 @@ resource "aws_security_group_rule" "ingress_with_ipv6_cidr_blocks" {
   description = lookup(
     var.ingress_with_ipv6_cidr_blocks[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for Wide Open IPv6 CIDR Blocks",
   )
 
   from_port = lookup(
@@ -327,7 +327,7 @@ resource "aws_security_group_rule" "computed_ingress_with_ipv6_cidr_blocks" {
   description = lookup(
     var.computed_ingress_with_ipv6_cidr_blocks[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for computed"
   )
 
   from_port = lookup(
@@ -371,7 +371,7 @@ resource "aws_security_group_rule" "ingress_with_self" {
   description = lookup(
     var.ingress_with_self[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule for Wide Open CIDR Blocks with Self",
   )
 
   from_port = lookup(
@@ -403,7 +403,7 @@ resource "aws_security_group_rule" "computed_ingress_with_self" {
   description = lookup(
     var.computed_ingress_with_self[count.index],
     "description",
-    "Ingress Rule",
+    "Ingress Rule with computed_ingress_with_self",
   )
 
   from_port = lookup(
